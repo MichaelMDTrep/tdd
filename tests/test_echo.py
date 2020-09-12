@@ -7,7 +7,7 @@ Students MUST EDIT this module, to add more tests to run
 against the 'echo.py' program.
 """
 
-__author__ = "???"
+__author__ = "Michael Trepanier"
 
 import sys
 import importlib
@@ -84,7 +84,7 @@ class TestEcho(unittest.TestCase):
         self.assertEqual(
             output[0], args[0],
             "The program is not performing simple echo"
-            )
+        )
 
     def test_lower_short(self):
         """Check if short option '-l' performs lowercasing"""

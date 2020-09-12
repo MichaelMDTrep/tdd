@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """An enhanced version of the 'echo' cmd line utility."""
 
-__author__ = "???"
+__author__ = "Michael Trepanier"
 
 
 import sys
@@ -10,7 +10,11 @@ import sys
 
 def create_parser():
     """Returns an instance of argparse.ArgumentParser"""
-    # your code here
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '--data_dir', help='directory to save data to', type=str, default='glue_data')
+    parser.add_argument('--tasks', help='tasks to download data for as a comma separated string',
+                        type=str, default='all')
     return
 
 
