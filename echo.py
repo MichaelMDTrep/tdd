@@ -2,25 +2,46 @@
 # -*- coding: utf-8 -*-
 """An enhanced version of the 'echo' cmd line utility."""
 
-__author__ = "Michael Trepanier"
+__author__ = "Michael Trepanier help from John Wilkinson"
 
 
 import sys
+import argparse
 
 
 def create_parser():
     """Returns an instance of argparse.ArgumentParser"""
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '--data_dir', help='directory to save data to', type=str, default='glue_data')
-    parser.add_argument('--tasks', help='tasks to download data for as a comma separated string',
-                        type=str, default='all')
-    return
+    parser = argparse.ArgumentParser(
+        description="Perform transformation on input text.")
+    parser.add_argument('text', help='text to be manipulated')
+
+    parser.add_argument('-l', '--lower',  help='lowercase',
+                        action='store_true')
+    parser.add_argument('-u', '--upper',  help='uppercase',
+                        action='store_true')
+    parser.add_argument('-t', '--title',  help='titlecase',
+                        action='store_true')
+
+    return parser
 
 
 def main(args):
     """Implementation of echo"""
-    # your code here
+    parser = create_parser()
+    ns = parser.parse_args(args)
+    if not ns:
+        parser.print_usage(args)
+        sys.exit(1)
+
+    text = ns.text
+    if ns.title:
+        print(text.title())
+    elif ns.lower:
+        print(text.lower())
+    elif ns.upper:
+        print(text.upper())
+    else:
+        print(text)
     return
 
 
